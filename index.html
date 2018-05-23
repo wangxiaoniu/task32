@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>task32 点击浮层</title>
+    <script src="https://cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        #content {
+           margin-top: 10px;
+           position: relative;
+
+        }
+
+        #btn {
+            height: 50px;
+            padding: 4px 4px;
+            position: relative;
+        }
+
+        #float {
+            border: 1px solid #f00;
+            padding: 50px 50px;
+            border-radius: 4px;
+            margin-left:10px;
+            position: absolute;
+            left: 40px;
+            top: 0;
+            display: none;
+        }
+
+        #float::before {
+            position: absolute;
+            right: 100%;
+            top:10px;
+            border: 10px solid transparent;
+            border-right-color: red;
+            content: '';
+        }
+
+        #float::after {
+            content: "";
+            border: 10px solid transparent;
+            border-right-color: white;
+            position: absolute;
+            right:100%;
+            top:10px;
+            margin-right: -1px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div id="content">
+        <button id="btn">点我</button>
+        <div id="float">
+            <input type="checkbox">浮层
+        </div>
+    </div>
+
+
+    <script>
+         
+       $(btn).on('click',function(e){
+            $(float).toggle();
+       })
+        $(content).on('click',function(e){
+            e.stopPropagation();//阻止冒泡
+        })
+        $(document).on('click',function(){
+            $(float).hide()
+        })
+    </script>
+</body>
+
+</html>
